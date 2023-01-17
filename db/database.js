@@ -1,18 +1,19 @@
-const { Client } = require('pg');
+const { Pool, Client} = require('pg')
 
-const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: 'postgres',
-    database: 'ECommerce API'
+// pools use environment variables
+// for connection information
+
+// .env file included with database information
+
+const pool = new Pool()
+
+pool.query('SELECT NOW()', (err,res)=>{
+    console.log(err, res)
+    pool.end()
 })
 
-client.connect();
+const client = new Client()
+await client.connect()
 
-client.query('SELECT * FROM orders', (err, result)=> {
-    if(!err){
-        console.log(result.rows);
-    }
-    client.end();
-})
+const res = await client.query('SELECT NOW()')
+await client.end()
