@@ -23,6 +23,10 @@ const checkUserExists = 'SELECT u FROM user_info u WHERE u.email = $1';
 // POST QUERIES
 const addUser = 'INSERT INTO user_info (user_id, user_password, email, first_name, last_name, created) VALUES ($1, $2, $3, $4, $5, $6)';
 
+const addOrder = 'INSERT INTO orders (order_id, created, total, status, user_id) VALUES ($1, $2, $3, $4, $5)';
+
+const getUID = 'SELECT * FROM user_info';
+
 
 // Export queries
 module.exports = {
@@ -37,5 +41,7 @@ module.exports = {
     getUsers,
     getUserByID,
     addUser,
-    checkUserExists
+    checkUserExists,
+    getUID,
+    addOrder
 };
