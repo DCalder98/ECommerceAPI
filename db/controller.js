@@ -84,6 +84,28 @@ const getUserByID = (req, res) =>{
     })
 }
 
+const addOrder = (req, res) =>{
+    const {created, total, status, user_id} = req.body;
+}
+
+const addUser = (req, res) => {
+    const {user_id, user_password, email, first_name, last_name, created} = req.body;
+
+    pool.query(queries.checkUserExists, [email], (err, results)=>{
+        if (results.rows.length){
+            res.send('Email already Taken');
+        }
+
+        pool.query(queries.addUser, [user_id, user_password, email, first_name, last_name, created], (err, results)=>{
+            if (err) throw err;
+            res.status(201).send('User created successfully');
+            console.log('User Created');
+        })
+    })
+
+    // Add user to database
+}
+
 module.exports = {
     getOrders,
     getOrderByID,
@@ -94,5 +116,7 @@ module.exports = {
     getCartItems,
     getCartItemByID,
     getUsers,
-    getUserByID
+    getUserByID,
+    addUser,
+    addOrder
 };

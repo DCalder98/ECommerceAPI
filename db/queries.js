@@ -19,7 +19,9 @@ const getCartItemByID = 'SELECT * FROM cart_item WHERE cart_item_id = $1';
 const getUsers = 'SELECT * FROM user_info';
 //Fetch Specific User
 const getUserByID = 'SELECT * FROM user_info WHERE user_id = $1';
-
+const checkUserExists = 'SELECT u FROM user_info u WHERE u.email = $1';
+// POST QUERIES
+const addUser = 'INSERT INTO user_info (user_id, user_password, email, first_name, last_name, created) VALUES ($1, $2, $3, $4, $5, $6)';
 
 
 // Export queries
@@ -33,5 +35,7 @@ module.exports = {
     getCartItems,
     getCartItemByID,
     getUsers,
-    getUserByID
+    getUserByID,
+    addUser,
+    checkUserExists
 };
