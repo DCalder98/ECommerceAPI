@@ -20,6 +20,7 @@ app.get('/', (req,res)=>{
     res.send('hello world')
 })
 
+// Set middleware routes
 app.use('/api', ordersRoutes)
 
 app.listen(port, ()=>{
