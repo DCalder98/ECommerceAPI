@@ -39,9 +39,60 @@ const getProductById = (req, res) =>{
     })
 }
 
+const getCarts = (req, res) =>{
+    pool.query(queries.getCarts, (err, results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows)
+    })
+}
+
+const getCartByID = (req, res) =>{
+    const id = parseInt(req.params.id);
+    pool.query(queries.getCartByID, [id], (err, results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows);
+    })
+}
+
+const getCartItems = (req,res) =>{
+    pool.query(queries.getCartItems, (err, results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows);
+    })
+}
+
+const getCartItemByID = (req, res) =>{
+    const id = parseInt(req.params.id);
+    pool.query(queries.getCartItemByID, [id], (err,results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows);   
+    })
+}
+
+const getUsers = (req, res) =>{
+    pool.query(queries.getUsers, (err, results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows);
+    })
+}
+
+const getUserByID = (req, res) =>{
+    const id = parseInt(req.params.id);
+    pool.query(queries.getUserByID, [id], (err, results)=>{
+        if (err) throw err;
+        res.status(200).json(results.rows)
+    })
+}
+
 module.exports = {
     getOrders,
     getOrderByID,
     getProducts,
-    getProductById
+    getProductById,
+    getCarts,
+    getCartByID,
+    getCartItems,
+    getCartItemByID,
+    getUsers,
+    getUserByID
 };
