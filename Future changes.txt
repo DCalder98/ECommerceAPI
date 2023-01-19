@@ -1,0 +1,16 @@
+Future changes and add-ons for API:
+
+    1. Add remaining routes to post to database. These include:
+        -POST cart
+        -DELETE cart
+        -UPDATE cart
+        -POST order_item
+        -DELETE order_item
+        -UPDATE order_item
+        -POST cart_item
+        -UPDATE cart_item
+        -DELETE cart_item
+
+    2. Revise database so that the id columns use SERIAL data types to automatically increment on new entries
+
+    3. Implement swagger API UI
