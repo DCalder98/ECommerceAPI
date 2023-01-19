@@ -1,5 +1,7 @@
 const { Router } = require('express');
-const controller = require('./controller')
+const controller = require('./controller');
+const passport = require('passport');
+require('../resources/passportConfig')(passport);
 
 const router = Router();
 // Route to fetch all orders
@@ -28,6 +30,21 @@ router.get('/users/:id', controller.getUserByID);
 router.post('/orders', controller.addOrder);
 
 router.post('/users', controller.addUser);
+
+//router.post('/auth/resgister', controller.registerUser);
+router.post('/auth/signup', passport.authenticate('local-signup', { session: false }), (req, res, next) => {
+    res.json({
+        user: req.user,
+    });
+});
+
+router.post('/auth/login', passport.authenticate('local-login', { session: false }), (req, res, next) => {
+    res.json(
+        {
+            user: req.user,
+        }
+    );
+});
 
 
 module.exports = router;

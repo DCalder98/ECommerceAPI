@@ -127,6 +127,7 @@ const addUser = (req, res) => {
     // Add user to database
 }
 
+
 module.exports = {
     getOrders,
     getOrderByID,
@@ -139,5 +140,5 @@ module.exports = {
     getUsers,
     getUserByID,
     addUser,
-    addOrder
+    addOrder,
 };
